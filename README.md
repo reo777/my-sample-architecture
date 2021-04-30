@@ -17,7 +17,7 @@ yarn global add @stoplight/prism-cli
 モックサーバーを起動
 
 ```
-start-mock: prism mock swagger.yaml -p 3000
+start-mock
 ```
 
 3. ローカルを起動する
