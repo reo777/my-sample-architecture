@@ -1,9 +1,12 @@
 # ビルド
-build: next build
+build:
+	npm run build
 
 # ローカル実行
-start: next start
+start:
+	npm run start
 
 # モックサーバー起動
-start-mock: prism mock swagger.yaml -p 3000
+start-mock:
+	npm run start:mock
 
