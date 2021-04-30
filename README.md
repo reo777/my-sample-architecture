@@ -17,11 +17,11 @@ yarn global add @stoplight/prism-cli
 モックサーバーを起動
 
 ```
-start-mock
+make start-mock
 ```
 
 3. ローカルを起動する
 
 ```
-start: next start
+make start
 ```
