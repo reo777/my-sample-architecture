@@ -1,0 +1,133 @@
+swagger: "2.0"
+info:
+  description: "記事情報と LIKE 機能に関する API 仕様書です。"
+  version: "1.0.0"
+  title: "API 仕様書"
+host: "newspicks.swagger.io"
+basePath: "/v1"
+tags:
+- name: "article"
+  description: "ユーザーが読む記事情報を取り扱っています"
+- name: "like"
+  description: "記事に対するリアクション機能です"
+schemes:
+- "https"
+- "http"
+paths:
+  /articles:
+    get:
+      tags:
+      - "article"
+      summary: "記事リストの取得"
+      description: ""
+      operationId: "getArticles"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ArrayOfArticles"
+        "405":
+          description: "Invalid input"
+  /like:
+    put:
+      tags:
+      - "like"
+      summary: "リアクション情報を更新"
+      description: ""
+      operationId: "updateLike"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "記事に対するリアクションを残すための API"
+        required: true
+        schema:
+          $ref: "#/definitions/Like"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "not found"
+        "405":
+          description: "Validation exception"
+        "409":
+          description: "Conflict"
+    delete:
+      tags:
+      - "like"
+      summary: "リアクション情報を削除"
+      description: ""
+      operationId: "deleteLike"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "記事に対するリアクションを削除するための API"
+        required: true
+        schema:
+          $ref: "#/definitions/Like"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "not found"
+        "405":
+          description: "Validation exception"
+definitions:
+  Like:
+    type: "object"
+    properties:
+      fromId:
+        type: "integer"
+        format: "int64"
+        description: "ユーザー ID"
+      articleId:
+        type: "integer"
+        format: "int64"
+        description: "記事 ID"
+  Article:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+        example: "あなたは、何のプロですか"
+      photoUrls:
+        type: "array"
+        xml:
+          name: "photoUrl"
+          wrapped: true
+        items:
+          type: "string"
+          example: "https://images.ctfassets.net/5ytauduveef9/66XNxRDSXrF9bP6b3NMyRs/9c3a48f080480054a87adb9db3bb0527/share.png"
+      publishedAt:
+        type: "string"
+        example: "2021-03-26T02:23:00Z"
+      isNew:
+        type: "boolean"
+        example: true
+      isLiked:
+        type: "boolean"
+        example: true
+  ArrayOfArticles:
+    type: "array"
+    items:
+      $ref: "#/definitions/Article"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
