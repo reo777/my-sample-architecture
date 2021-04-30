@@ -25,3 +25,5 @@ make start-mock
 ```
 make start
 ```
+
+上記コマンド実行後、`http://localhost:3000/` にてローカル環境を確認してください。
