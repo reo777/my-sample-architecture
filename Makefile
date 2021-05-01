@@ -1,10 +1,6 @@
-# ビルド
-build:
-	npm run build
-
 # ローカル実行
 start:
-	npm run start
+	npm run dev
 
 # モックサーバー起動
 start-mock:
