@@ -2,7 +2,7 @@ import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 
-import { getNewsItems } from './newsActions';
+import { getNewsItems } from './NewsActions';
 
 interface NewsItemState {
   id: number;
@@ -26,6 +26,8 @@ const initialState: NewsItemState[] = [
 
 const newsReducer = createReducer(initialState, builder =>
   builder.addCase(getNewsItems, (draft, action) => {
+    console.log(action);
+
     draft;
   }),
 );

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import { newsRootReducer } from './pages/news/newsReducer';
+import { newsRootReducer } from './pages/news/NewsReducer';
 
 const rootReducer = combineReducers({
   ...newsRootReducer,
