@@ -1,15 +1,8 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import News from './news';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+export default function App() {
+  // Create a Title component that'll render an <h1> tag with some styles
 
-export default IndexPage
+  // Use Title and Wrapper like any other React component – except they're styled!
+  return <News />;
+}
