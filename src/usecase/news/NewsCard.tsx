@@ -1,10 +1,15 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import { NewLabel } from '../../components/atom/NewLabel/NewLabel';
 import { NewsImage } from '../../components/atom/NewsImage/NewsImage';
 import { LikeButton } from '../../components/atom/LikeButton/LikeButton';
 import { NewsTitle } from '../../components/atom/NewsTitle';
 import { PublishedDateText } from '../../components/atom/PublishedDateText/index';
+import {
+  updateLikeAction,
+  deleteLikeAction,
+} from '../../redux/news/NewsActions';
 
 const NewsCardLayout = styled.div`
   width: 319px;
@@ -42,6 +47,7 @@ const NewsCardFooter = styled.div`
 `;
 
 interface Props {
+  id: number;
   title: string;
   isLiked: boolean;
   photoUrls: string;
@@ -50,7 +56,16 @@ interface Props {
 }
 
 export const NewsCard: React.VFC<Props> = props => {
-  const { title, isLiked, photoUrls, isNew, publishedAt } = props;
+  const { title, isLiked, photoUrls, isNew, publishedAt, id } = props;
+  const dispatch = useDispatch();
+
+  const updateLike = () => {
+    dispatch(updateLikeAction({ id }));
+  };
+
+  const deleteLike = () => {
+    dispatch(deleteLikeAction({ id }));
+  };
 
   return (
     <NewsCardLayout>
@@ -62,7 +77,12 @@ export const NewsCard: React.VFC<Props> = props => {
         </NewsTitleArea>
         <NewsInfoArea>
           <PublishedDateText publishedAt={publishedAt} />
-          <LikeButton isLiked={isLiked} onClick={() => console.log('hello')} />
+          <LikeButton
+            isLiked={isLiked}
+            onClick={() => {
+              isLiked ? deleteLike() : updateLike();
+            }}
+          />
         </NewsInfoArea>
       </NewsCardFooter>
     </NewsCardLayout>

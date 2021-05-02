@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { getNewsItemsAction } from '../../../redux/news/NewsActions';
 import { useNewsSelector } from '../../../redux/news/NewsReducer';
 
-export const useGetNewsItems = () => {
+export const useNewsItems = () => {
   const dispatch = useDispatch();
   const newsItems = useNewsSelector(state => state.news.newsItems);
 

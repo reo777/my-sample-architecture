@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { dayjs } from '../../utils/dayjs';
 import { NewsCard } from '../../usecase/news/NewsCard';
-import { useGetNewsItems } from './hooks/useGetNewsItems';
+import { useNewsItems } from './hooks/useNewsItems';
 
 const NewsLayout = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const NewsLayout = styled.div`
 `;
 
 const News = (): React.ReactElement => {
-  const { newsItems } = useGetNewsItems();
+  const { newsItems } = useNewsItems();
 
   return (
     <NewsLayout>
@@ -26,6 +26,7 @@ const News = (): React.ReactElement => {
             isNew={newsItem.isNew}
             photoUrls={newsItem.photoUrls[0]}
             publishedAt={dayjs(newsItem.publishedAt).format('YYYY年M月DD日')}
+            id={newsItem.id}
           />
         );
       })}

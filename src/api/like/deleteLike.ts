@@ -13,8 +13,6 @@ export const deleteLike = async (requestBody: RequestBody) => {
         data: requestBody,
       },
     );
-
-    return response.data;
   } catch (error) {
     throw new Error(error);
   }

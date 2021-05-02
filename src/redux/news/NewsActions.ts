@@ -7,6 +7,10 @@ export const updateNewsItemsAction = createAction<{
   newsItems: NewsItemState[];
 }>('updateNewsItemsAction');
 
-export const updateLikeAction = createAction('updateLikeAction');
+export const updateLikeAction = createAction<{ id: number }>(
+  'updateLikeAction',
+);
 
-export const deleteLikeAction = createAction('deleteLikeAction');
+export const deleteLikeAction = createAction<{ id: number }>(
+  'deleteLikeAction',
+);
