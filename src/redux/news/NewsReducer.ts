@@ -2,10 +2,10 @@ import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 
-import { getNewsItems } from './NewsActions';
+import { updateNewsItemsAction } from './NewsActions';
 
-interface NewsItemState {
-  id: number;
+export interface NewsItemState {
+  id: number | null;
   title: string;
   photoUrls: string[];
   publishedAt: string;
@@ -13,29 +13,19 @@ interface NewsItemState {
   isLiked: boolean;
 }
 
-const initialState: NewsItemState[] = [
-  {
-    id: 0,
-    title: '',
-    photoUrls: [''],
-    publishedAt: '',
-    isNew: true,
-    isLiked: true,
-  },
-];
+const initialState: { newsItems: NewsItemState[] } = { newsItems: [] };
 
-const newsReducer = createReducer(initialState, builder =>
-  builder.addCase(getNewsItems, (draft, action) => {
-    console.log(action);
-
-    draft;
-  }),
-);
+const newsReducer = createReducer(initialState, builder => {
+  builder.addCase(updateNewsItemsAction, (draft, action) => {
+    draft.newsItems = action.payload.newsItems;
+  });
+});
 
 export const newsRootReducer = {
-  newsItems: newsReducer,
+  news: newsReducer,
 };
 
 const localReducer = combineReducers(newsRootReducer);
+
 type NewsRootState = ReturnType<typeof localReducer>;
 export const useNewsSelector: TypedUseSelectorHook<NewsRootState> = useSelector;

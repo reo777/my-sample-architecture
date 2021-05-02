@@ -1,17 +1,35 @@
-import { NewLabel } from '../../components/atom/NewLabel/NewLabel';
-import { useNewsSelector } from '../../redux/pages/news/NewsReducer';
-import { LikeButton } from '../../components/atom/LikeButton/LikeButton';
+import React from 'react';
+import styled from 'styled-components';
 
-const News = () => {
-  const state = useNewsSelector(state => state.newsItems);
-  console.log(state);
+import { dayjs } from '../../utils/dayjs';
+import { NewsCard } from '../../usecase/news/NewsCard';
+import { useGetNewsItems } from './hooks/useGetNewsItems';
+
+const NewsLayout = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  flex-direction: column;
+`;
+
+const News = (): React.ReactElement => {
+  const { newsItems } = useGetNewsItems();
 
   return (
-    <div>
-      <NewLabel />
-      <LikeButton isLiked={true} />
-      <h1>This iws News Page</h1>
-    </div>
+    <NewsLayout>
+      {newsItems.map(newsItem => {
+        return (
+          <NewsCard
+            key={newsItem.id}
+            title={newsItem.title}
+            isLiked={newsItem.isLiked}
+            isNew={newsItem.isNew}
+            photoUrls={newsItem.photoUrls[0]}
+            publishedAt={dayjs(newsItem.publishedAt).format('YYYY年M月DD日')}
+          />
+        );
+      })}
+    </NewsLayout>
   );
 };
 
