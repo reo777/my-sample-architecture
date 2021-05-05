@@ -7,12 +7,9 @@ interface RequestBody {
 
 export const deleteLike = async (requestBody: RequestBody) => {
   try {
-    const response = await axiosInstance().delete(
-      'http://localhost:8000/like',
-      {
-        data: requestBody,
-      },
-    );
+    await axiosInstance().delete('http://localhost:8000/like', {
+      data: requestBody,
+    });
   } catch (error) {
     throw new Error(error);
   }

@@ -4,7 +4,7 @@ import {
   updateNewsItemsAction,
   deleteLikeAction,
 } from './NewsActions';
-import { getNewsItemsSideEffect, deleteLikeSideEffect } from './NewsSideEffect';
+import { getNewsItemsSideEffect } from './NewsSideEffect';
 import { updateLikeAction } from './NewsActions';
 
 export const buildNewsMiddleware = (): Middleware => {
@@ -18,18 +18,18 @@ export const buildNewsMiddleware = (): Middleware => {
       }
 
       case deleteLikeAction.type: {
-        const deleteLikeMiddlewareAction = action as ReturnType<
-          typeof deleteLikeAction
-        >;
+        // const deleteLikeMiddlewareAction = action as ReturnType<
+        //   typeof deleteLikeAction
+        // >;
         // await deleteLikeSideEffect(deleteLikeMiddlewareAction.payload.id);
         next(action);
 
         break;
       }
       case updateLikeAction.type: {
-        const updateLikeMiddlewareAction = action as ReturnType<
-          typeof updateLikeAction
-        >;
+        // const updateLikeMiddlewareAction = action as ReturnType<
+        //   typeof updateLikeAction
+        // >;
         // await deleteLikeSideEffect(updateLikeMiddlewareAction.payload.id);
         next(action);
 
