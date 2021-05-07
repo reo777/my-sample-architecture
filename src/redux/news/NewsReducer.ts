@@ -19,6 +19,44 @@ export interface NewsItemState {
 
 const initialState: { newsItems: NewsItemState[] } = { newsItems: [] };
 
+export const updatedLikeItems = (
+  newsItems: NewsItemState[],
+  action: {
+    payload: {
+      id: number;
+    };
+  },
+) => {
+  return newsItems.map(newsItem => {
+    if (newsItem.id === action.payload.id) {
+      return {
+        ...newsItem,
+        isLiked: true,
+      };
+    }
+    return newsItem;
+  });
+};
+
+export const deletedLikeItems = (
+  newsItems: NewsItemState[],
+  action: {
+    payload: {
+      id: number;
+    };
+  },
+) => {
+  return newsItems.map(newsItem => {
+    if (newsItem.id === action.payload.id) {
+      return {
+        ...newsItem,
+        isLiked: false,
+      };
+    }
+    return newsItem;
+  });
+};
+
 const newsReducer = createReducer(initialState, builder => {
   builder
     .addCase(updateNewsItemsAction, (draft, action) => {
@@ -26,39 +64,11 @@ const newsReducer = createReducer(initialState, builder => {
     })
 
     .addCase(updateLikeAction, (draft, action) => {
-      const updatedNewsItems = draft.newsItems.map(newsItem => {
-        if (newsItem.id === action.payload.id) {
-          return {
-            id: newsItem.id,
-            title: newsItem.title,
-            photoUrls: newsItem.photoUrls,
-            publishedAt: newsItem.publishedAt,
-            isNew: newsItem.isNew,
-            isLiked: true,
-          };
-        }
-        return newsItem;
-      });
-
-      draft.newsItems = updatedNewsItems;
+      draft.newsItems = updatedLikeItems(draft.newsItems, action);
     })
 
     .addCase(deleteLikeAction, (draft, action) => {
-      const updatedNewsItems = draft.newsItems.map(newsItem => {
-        if (newsItem.id === action.payload.id) {
-          return {
-            id: newsItem.id,
-            title: newsItem.title,
-            photoUrls: newsItem.photoUrls,
-            publishedAt: newsItem.publishedAt,
-            isNew: newsItem.isNew,
-            isLiked: false,
-          };
-        }
-        return newsItem;
-      });
-
-      draft.newsItems = updatedNewsItems;
+      draft.newsItems = deletedLikeItems(draft.newsItems, action);
     });
 });
 

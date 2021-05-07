@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewsReducer deletedLikeItems 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "isLiked": false,
+    "isNew": true,
+    "photoUrls": Array [
+      "",
+    ],
+    "publishedAt": "2021年5月8日",
+    "title": "test news item",
+  },
+]
+`;
+
+exports[`NewsReducer updatedLikeItems 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "isLiked": true,
+    "isNew": true,
+    "photoUrls": Array [
+      "",
+    ],
+    "publishedAt": "2021年5月8日",
+    "title": "test news item",
+  },
+]
+`;
