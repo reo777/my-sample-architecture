@@ -33,6 +33,8 @@ const LikeButtonWrapper = styled.button<{ isLiked: boolean }>`
   }
 `;
 
+// returnしているコンポーネントはPopupだが、HTML上ではtriggerにあるbutton要素を返している
+
 export const LikeButton: React.VFC<Props> = props => {
   const { isLiked, onClick } = props;
 
