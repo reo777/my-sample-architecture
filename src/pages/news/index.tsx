@@ -8,36 +8,38 @@ import { useNewsItems } from './hooks/useNewsItems';
 const NewsItemsLayout = styled.div`
   display: flex;
   align-items: center;
-  padding: 24px;
+  padding: 24px 8px 8px 24px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
-const LayoutWrapper = styled.div`
+const NewsItemsGrid = styled.div`
   display: flex;
   justify-content: center;
   max-width: 1388px;
+`;
+
+const NewsCardWrapper = styled.div`
+  padding: 0 16px 16px 0;
+`;
+
+const NewsPage = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const News = (): React.ReactElement => {
   const { newsItems } = useNewsItems();
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <LayoutWrapper>
+    <NewsPage>
+      <NewsItemsGrid>
         <NewsItemsLayout>
           {newsItems.map(newsItem => {
             return (
-              <div
-                style={{
-                  justifyContent: 'space-around',
-                  display: 'flex',
-                  padding: '0 16px 16px 0',
-                }}
-              >
+              <NewsCardWrapper key={newsItem.id}>
                 <NewsCard
-                  key={newsItem.id}
                   title={newsItem.title}
                   isLiked={newsItem.isLiked}
                   isNew={newsItem.isNew}
@@ -47,12 +49,12 @@ const News = (): React.ReactElement => {
                   )}
                   id={newsItem.id}
                 />
-              </div>
+              </NewsCardWrapper>
             );
           })}
         </NewsItemsLayout>
-      </LayoutWrapper>
-    </div>
+      </NewsItemsGrid>
+    </NewsPage>
   );
 };
 

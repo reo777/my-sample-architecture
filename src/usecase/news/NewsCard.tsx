@@ -18,6 +18,7 @@ const NewsCardLayout = styled.div`
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+
   &:hover {
     box-shadow: 1px 1px 8px #d9dfe1;
     opacity: 0.8;

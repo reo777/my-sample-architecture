@@ -33,29 +33,21 @@ const LikeButtonWrapper = styled.button<{ isLiked: boolean }>`
   }
 `;
 
-export const LikeButtonIcon = ({
-  isLiked,
-  onClick,
-}: {
-  isLiked: boolean;
-  onClick: (isLiked: boolean) => void;
-}) => (
-  <LikeButtonWrapper
-    isLiked={isLiked}
-    onClick={() => onClick(isLiked)}
-    data-testid="like-button-icon"
-  >
-    <Icon name="heart" />
-  </LikeButtonWrapper>
-);
-
 export const LikeButton: React.VFC<Props> = props => {
   const { isLiked, onClick } = props;
 
   return (
     <Popup
       content={isLiked ? 'お気に入りから削除する' : 'お気に入り登録する'}
-      trigger={<LikeButtonIcon isLiked={isLiked} onClick={onClick} />}
+      trigger={
+        <LikeButtonWrapper
+          isLiked={isLiked}
+          onClick={() => onClick(isLiked)}
+          data-testid="like-button-icon"
+        >
+          <Icon name="heart" />
+        </LikeButtonWrapper>
+      }
       position="top center"
       size="mini"
     />

@@ -14,7 +14,8 @@ export const getNewsItemsSideEffect = async () => {
 
 export const deleteLikeSideEffect = async (id: number) => {
   try {
-    await deleteLike({ fromId: id, articleId: id });
+    // こちら側でfromIdを指定して良いとのことなので値を固定
+    await deleteLike({ fromId: 555, articleId: id });
   } catch (error) {
     throw new Error('Likeの削除に失敗しました');
   }
@@ -22,7 +23,8 @@ export const deleteLikeSideEffect = async (id: number) => {
 
 export const updateLikeSideEffect = async (id: number) => {
   try {
-    await updateLike({ fromId: id, articleId: id });
+    // こちら側でfromIdを指定して良いとのことなので値を固定
+    await updateLike({ fromId: 555, articleId: id });
   } catch (error) {
     throw new Error('Likeの更新に失敗しました');
   }

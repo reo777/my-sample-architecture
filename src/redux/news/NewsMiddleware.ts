@@ -4,7 +4,7 @@ import {
   updateNewsItemsAction,
   deleteLikeAction,
 } from './NewsActions';
-import { getNewsItemsSideEffect } from './NewsSideEffect';
+import { getNewsItemsSideEffect, deleteLikeSideEffect } from './NewsSideEffect';
 import { updateLikeAction } from './NewsActions';
 
 export const buildNewsMiddleware = (): Middleware => {
@@ -18,20 +18,22 @@ export const buildNewsMiddleware = (): Middleware => {
       }
 
       case deleteLikeAction.type: {
+        next(action);
+        // {fromId:number,articleId:number} でリクエストしているが400番になるためコメントアウト
         // const deleteLikeMiddlewareAction = action as ReturnType<
         //   typeof deleteLikeAction
         // >;
         // await deleteLikeSideEffect(deleteLikeMiddlewareAction.payload.id);
-        next(action);
 
         break;
       }
       case updateLikeAction.type: {
+        next(action);
+        // {fromId:number,articleId:number} でリクエストしているが400番になるためコメントアウト
         // const updateLikeMiddlewareAction = action as ReturnType<
         //   typeof updateLikeAction
         // >;
-        // await deleteLikeSideEffect(updateLikeMiddlewareAction.payload.id);
-        next(action);
+        // await updateLikeMiddlewareAction.payload.id;
 
         break;
       }
